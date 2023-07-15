@@ -87,7 +87,7 @@ public class LiteDbService
 
     private void CreateConnection(IOptions<LiteDbOption> option)
     {
-        string dbName = "app.db";
+        string dbName = "App.db";
         string folderPath = GetDbFolderPath(option);
 
         DeleteDbFile(folderPath);
