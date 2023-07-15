@@ -1,7 +1,11 @@
+using FoodDeliveryApp.DbService;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.Configure<LiteDbOption>(
+    builder.Configuration.GetSection("LiteDbOptions"));
 
 var app = builder.Build();
 
