@@ -28,7 +28,7 @@
 
 <body>
 
-    @await Html.PartialAsync("Header")
+    @await Html.PartialAsync("_Header")
 
     @RenderBody()
 
@@ -451,6 +451,7 @@
 </div>
 </section>
 
+    @await Html.PartialAsync("_Footer")
 
     <script src="_framework/blazor.webassembly.js"></script>
     <script>navigator.serviceWorker.register('service-worker.js');</script>
