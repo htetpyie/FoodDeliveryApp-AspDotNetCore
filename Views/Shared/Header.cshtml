@@ -1,0 +1,41 @@
+﻿<div style=" position: -webkit-sticky; position: sticky; top: 0; z-index: 99;">
+    <header class="header header__shrink">
+        <div class="container">
+            <div class="nav__wrapper d-flex align-items-center justify-content-between">
+                <div class="logo">
+                    <img src="assets/img/favicon.png" alt="logo">
+                    <h5>Tasty Treat</h5>
+                </div>
+                <div class="navigation">
+                    <div class="menu d-flex align-items-center gap-5">
+                       @* @foreach (var page in FoodService.GetPages())
+                        {
+                            <a class="@(page == _menuStateContainer.PageType ? "active__menu" : "")"
+                               href="javascript:void(0);"
+                               @onclick="() => GoToPage(page)"
+                               aria-current="page">
+                                @(page.ToString())
+                            </a>
+                        }*@
+                    </div>
+                </div>
+                <div class="nav__right d-flex align-items-center gap-4">
+                    <PageNotification/>
+                    <span
+                        class="user">
+                        <a href="https://food-delivery-ecommerce-app.netlify.app/login">
+                            <i
+                                class="ri-user-line">
+                            </i>
+                        </a>
+                    </span>
+                    <span class="mobile__menu">
+                        <i
+                            class="ri-menu-line">
+                        </i>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
