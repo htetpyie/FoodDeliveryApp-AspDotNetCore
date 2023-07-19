@@ -8,15 +8,19 @@
                 </div>
                 <div class="navigation">
                     <div class="menu d-flex align-items-center gap-5">
-                       @* @foreach (var page in FoodService.GetPages())
+                        @{
+                          List<EnumPageType> pageTypes = Enum.GetValues(typeof(EnumPageType)).Cast<EnumPageType>().ToList();
+                        }
+                        @foreach (var page in pageTypes)
                         {
-                            <a class="@(page == _menuStateContainer.PageType ? "active__menu" : "")"
+                            <a 
+                                @*class="@(page == _menuStateContainer.PageType ? "active__menu" : "")"*@
                                href="javascript:void(0);"
-                               @onclick="() => GoToPage(page)"
+                               @*@onclick="() => GoToPage(page)"*@
                                aria-current="page">
                                 @(page.ToString())
                             </a>
-                        }*@
+                        }
                     </div>
                 </div>
                 <div class="nav__right d-flex align-items-center gap-4">
