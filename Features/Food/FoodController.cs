@@ -11,6 +11,13 @@ namespace FoodDeliveryApp.Features.Food
             _foodService = foodService;
         }
 
+        public ActionResult Index()
+        {
+            ViewBag.FoodList = _foodService.FoodList;
+            ViewBag.FoodCategoryList = _foodService.FoodCategoryList;
+            return View();
+        }
+
         public IActionResult PopularFood()
         {
             ViewBag.FoodList = _foodService.FoodList;
