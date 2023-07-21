@@ -13,9 +13,9 @@ namespace FoodDeliveryApp.Features.Food
 
         public IActionResult PopularFood()
         {
-            var foodList = _foodService.FoodList;
-            var foodCategory = _foodService.FoodCategoryList;
-            return View(foodCategory);
+            ViewBag.FoodList = _foodService.FoodList;
+            ViewBag.FoodCategoryList = _foodService.FoodCategoryList;
+            return View();
         }
 
     }
