@@ -1,23 +1,28 @@
-﻿<section>
+﻿@model List<FoodCategoryModel>
+@{
+    Layout = LayoutService.GetLayout();
+}
+<section>
     <div class="container">
         <div class="row">
             <div class="text-center col-lg-12">
                 <h2>Popular Foods</h2>
             </div>
-           @* <div class="col-lg-12">
+            <div class="col-lg-12">
                 <div class="food__category d-flex align-items-center justify-content-center gap-4">
-                    <button type="button" class="all__btn  @(_categoryId == 0 ? "foodBtnActive" : "") " @onclick="() => FindFoodByCategory()">All</button>
-                    @foreach (var item in FoodCategoryList)
+                    <button type="button" class="all__btn  @(0 == 0 ? "foodBtnActive" : "") " onclick="() => FindFoodByCategory()">All</button>
+                    @foreach (var item in Model)
                     {
                         string imagePath = $"assets/img/food-category/{item.CategoryId}.png";
-                        <button type="button" class="d-flex align-items-center gap-2 @(_categoryId == item.CategoryId ? "foodBtnActive" : "") " @onclick="() => FindFoodByCategory(item.CategoryId)">
+                        <button type="button" class="d-flex align-items-center gap-2 @(0 == item.CategoryId ? "foodBtnActive" : "") " onclick="() => FindFoodByCategory(item.CategoryId)">
                             <img src="@(imagePath)"
                                  alt="">@item.CategoryName
                         </button>
                     }
                 </div>
             </div>
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-3">
+            
+           @* <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-3">
                 <div class="search__widget d-flex align-items-center justify-content-between ">
                     <input type="text" placeholder="I'm looking for...." @onchange="Search">
                     <span>

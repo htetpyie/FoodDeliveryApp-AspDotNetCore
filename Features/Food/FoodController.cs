@@ -4,9 +4,18 @@ namespace FoodDeliveryApp.Features.Food
 {
     public class FoodController : Controller
     {
+        private readonly FoodService _foodService;
+
+        public FoodController(FoodService foodService)
+        {
+            _foodService = foodService;
+        }
+
         public IActionResult PopularFood()
         {
-            return View();
+            var foodList = _foodService.FoodList;
+            var foodCategory = _foodService.FoodCategoryList;
+            return View(foodCategory);
         }
 
     }

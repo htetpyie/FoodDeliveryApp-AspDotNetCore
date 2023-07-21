@@ -6,6 +6,9 @@ namespace FoodDeliveryApp.Features.Food
     {
         public List<FoodModel> FoodList => Get<FoodModel>(JsonData.Food) ?? new();
 
+        public List<FoodCategoryModel> FoodCategoryList => 
+            Get<FoodCategoryModel>(JsonData.FoodCategory) ?? new();
+
         public List<T>? Get<T>(string jsonStr)
         {
             return JsonConvert.DeserializeObject<List<T>?>(jsonStr);
