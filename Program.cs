@@ -1,4 +1,5 @@
 using FoodDeliveryApp.DbService;
+using FoodDeliveryApp.Features.Cart;
 using FoodDeliveryApp.Features.Food;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,7 @@ builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 builder.Services.Configure<LiteDbOption>(
     builder.Configuration.GetSection("LiteDbOptions"));
 builder.Services.AddScoped<FoodService>();
+builder.Services.AddScoped<CardService>();
 
 var app = builder.Build();
 
