@@ -4,14 +4,58 @@ namespace FoodDeliveryApp.Features.Food
 {
     public class FoodService
     {
-        public List<FoodModel> FoodList => Get<FoodModel>(JsonData.Food) ?? new();
-
-        public List<FoodCategoryModel> FoodCategoryList => 
+        public List<FoodCategoryModel> FoodCategoryList =>
             Get<FoodCategoryModel>(JsonData.FoodCategory) ?? new();
+
+        public FoodPaginationResponseModel FoodList(
+           FoodPaginationRequestModel request)
+        {
+            List<FoodModel> foodList = Get<FoodModel>(JsonData.Food) ?? new();
+            var response = GetPaginationResponse(foodList, request);
+            return response;
+
+        }
 
         public List<T>? Get<T>(string jsonStr)
         {
             return JsonConvert.DeserializeObject<List<T>?>(jsonStr);
+        }
+
+        private FoodPaginationResponseModel GetPaginationResponse(
+            List<FoodModel> list,
+            FoodPaginationRequestModel request)
+        {
+            if (request.FoodCategoryId > 0)
+            {
+                list = list
+                    .Where(x => x.FoodCategory == request.FoodCategoryId)
+                    .ToList();
+            }
+
+            if (!request.SearchParam.IsNullOrEmpty())
+            {
+                string searchParam = request.SearchParam.Trim().ToLower();
+                list = list
+                    .Where(x =>
+                        x.FoodName.ToLower()
+                        .Contains(searchParam))
+                    .ToList();
+            }
+
+            int count = list.Count;
+            int totalPages = count / request.PageSize;
+            if (count % request.PageSize > 0) totalPages++;
+
+            list = list
+                .Skip(request.Skip)
+                .Take(request.PageSize)
+                .ToList();
+
+            return new FoodPaginationResponseModel
+            {
+                FoodList = list,
+                TotalPageNo = totalPages
+            };
         }
     }
     public static class JsonData
@@ -109,5 +153,5 @@ namespace FoodDeliveryApp.Features.Food
         ]";
     }
 
-    
+
 }

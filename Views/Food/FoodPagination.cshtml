@@ -1,0 +1,54 @@
+﻿@{
+    Layout = null;
+}
+
+ <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-3">
+                <div class="search__widget d-flex align-items-center justify-content-between ">
+                    <input type="text" placeholder="I'm looking for...." onchange="Search">
+                    <span>
+                        <i class="ri-search-line"></i>
+                    </span>
+                </div>
+</div>
+@if ("" != null)
+{
+    @foreach (var item in ViewBag.FoodList)
+    {
+        string name = item.FoodName;
+        string img = $"assets/img/food/{item.FoodId}.jpg";
+        decimal price = item.FoodPrice;
+        string display = (string.IsNullOrEmpty(name.Trim()) ||
+                            name.ToLower().Contains(""?.ToLower() ?? string.Empty)) ? "" : "display : none;";
+
+        <div class="mt-5 col-6 col-sm-6 col-md-4 col-lg-3" style="display">
+            <div class="product__item">
+                <div class="product__img">
+                    <img src="@img"
+                            alt="product-img" class="w-50">
+                </div>
+                <div class="product__content">
+                    <h5 style="height:47px;">
+                        <a href="javascript:void(0);">
+                            @name
+                        </a>
+                    </h5>
+                    <div class=" d-flex align-items-center justify-content-between ">
+                        <span class="product__price">
+                            $@price
+                        </span>
+                        <button type="button" class="addTOCart__btn" onclick="() => AddToCard(item)">
+                            Add
+                            to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    @if (0 == 0)
+    {
+        <div class="text-center">
+            <MudPagination SelectedChanged="PageChanged" ShowFirstButton="true" ShowLastButton="true" Count="_foodPagination.TotalPageNo" Class="mt-4"/>
+        </div>
+    }
+}
