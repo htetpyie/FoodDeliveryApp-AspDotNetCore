@@ -1,11 +1,26 @@
-﻿using Newtonsoft.Json;
+﻿using FoodDeliveryApp.DbService;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace FoodDeliveryApp.Features.Food
 {
     public class FoodService
     {
+        private readonly LiteDbService _db;
+
+        public FoodService(LiteDbService db)
+        {
+            _db = db;
+        }
+
         public List<FoodCategoryModel> FoodCategoryList =>
             Get<FoodCategoryModel>(JsonData.FoodCategory) ?? new();
+
+        public FoodModel GetFoodById(int id)
+        {
+            var foodList = Get<FoodModel>(JsonData.Food) ?? new();
+            return foodList.FirstOrDefault(x => x.FoodId == id);
+        }
 
         public FoodPaginationResponseModel FoodPagination(
            FoodPaginationRequestModel request)
@@ -13,7 +28,49 @@ namespace FoodDeliveryApp.Features.Food
             List<FoodModel> foodList = Get<FoodModel>(JsonData.Food) ?? new();
             var response = GetPaginationResponse(foodList, request);
             return response;
+        }
 
+        public void AddedFoodToCard(FoodSaleDataModel food, int qty)
+        {
+            if (FoodExists(food.FoodId))
+            {
+                var foodData = GetFood(food.FoodId);
+                foodData.Qty += qty;
+                _db.Update(food);
+            }
+            else
+            {
+                _db.Insert<FoodSaleDataModel>(food);
+            }
+        }
+
+        public FoodSaleDataModel GetFood(int id)
+        {
+            return _db.GetOne<FoodSaleDataModel>(x => x.FoodId == id);
+        }
+
+        public bool FoodExists(int id)
+        {
+            var food = _db.GetOne<FoodSaleDataModel>(x => x.FoodId == id);
+            return food != null;
+        }
+
+        public List<FoodSaleDataModel> GetAddedFoodList()
+        {
+            var list = _db.GetList<FoodSaleDataModel>();
+            return list;
+        }
+
+        public bool DeleteAddedFood(Guid id)
+        {
+            var isDeleted = _db.Delete<FoodSaleDataModel>(id);
+            return isDeleted;
+        }
+
+        public int DeleteAddedFoods()
+        {
+            var result = _db.DeleteAll<FoodSaleDataModel>();
+            return result;
         }
 
         public List<T>? Get<T>(string jsonStr)
@@ -59,100 +116,6 @@ namespace FoodDeliveryApp.Features.Food
                 PageNo = request.PageNo,
             };
         }
-    }
-    public static class JsonData
-    {
-        public static string Food { get; } = @" [
-        {
-          ""FoodId"": 1,
-          ""FoodName"": ""Chicken Burger"",
-          ""FoodPrice"": 24,
-          ""FoodCategory"": 1
-        },
-        {
-          ""FoodId"": 5,
-          ""FoodName"": ""Cheese Burger"",
-          ""FoodPrice"": 24,
-          ""FoodCategory"": 1
-        },
-        {
-          ""FoodId"": 6,
-          ""FoodName"": ""Royal Cheese Burger"",
-          ""FoodPrice"": 24,
-          ""FoodCategory"": 1
-        },
-        {
-          ""FoodId"": 10,
-          ""FoodName"": ""Classic Hamburger"",
-          ""FoodPrice"": 24,
-          ""FoodCategory"": 1
-        },
-        {
-          ""FoodId"": 2,
-          ""FoodName"": ""Vegetarian Pizza"",
-          ""FoodPrice"": 115,
-          ""FoodCategory"": 2
-        },
-        {
-          ""FoodId"": 3,
-          ""FoodName"": ""Double Cheese Margherita"",
-          ""FoodPrice"": 110,
-          ""FoodCategory"": 2
-        },
-        {
-          ""FoodId"": 7,
-          ""FoodName"": ""Maxican Green Wave"",
-          ""FoodPrice"": 110,
-          ""FoodCategory"": 2
-        },{
-          ""FoodId"": 8,
-          ""FoodName"": ""Seafood Pizza"",
-          ""FoodPrice"": 115,
-          ""FoodCategory"": 2
-        },{
-          ""FoodId"": 9,
-          ""FoodName"": ""Thin Cheese Pizza"",
-          ""FoodPrice"": 110,
-          ""FoodCategory"": 2
-        },{
-          ""FoodId"": 4,
-          ""FoodName"": ""Pizza With Mushroom"",
-          ""FoodPrice"": 110,
-          ""FoodCategory"": 2
-        },{
-          ""FoodId"": 11,
-          ""FoodName"": ""Crunchy Bread"",
-          ""FoodPrice"": 35,
-          ""FoodCategory"": 3
-        },
-        {
-          ""FoodId"": 12,
-          ""FoodName"": ""Delicious Bread"",
-          ""FoodPrice"": 35,
-          ""FoodCategory"": 3
-        },
-        {
-          ""FoodId"": 13,
-          ""FoodName"": ""Loaf Bread"",
-          ""FoodPrice"": 35,
-          ""FoodCategory"": 3
-        }
-        ]";
-
-        public static string FoodCategory { get; } = @"[
-        {
-            ""CategoryId"": 1,
-            ""CategoryName"": ""Burger""
-        },
-        {
-            ""CategoryId"": 2,
-            ""CategoryName"": ""Pizzia""
-        },
-        {
-            ""CategoryId"": 3,
-            ""CategoryName"": ""Bread""
-        }
-        ]";
     }
 
 

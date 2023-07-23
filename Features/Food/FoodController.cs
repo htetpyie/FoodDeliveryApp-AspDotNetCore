@@ -36,5 +36,15 @@ namespace FoodDeliveryApp.Features.Food
             };
             return View(response);
         }
+
+        public IActionResult AddedFood(int foodId)
+        {
+            var food = _foodService.GetFoodById(foodId);
+            FoodSaleDataModel model = food.Change();
+            _foodService.AddedFoodToCard(model);
+
+            var foodList = _foodService.GetAddedFoodList();
+            return Json(foodList.Count);
+        }
     }
 }
