@@ -3,14 +3,16 @@
     Layout = null;
 }
  <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-3">
-                <div class="search__widget d-flex align-items-center justify-content-between ">
-                    <input type="text" value="@Model.SearchParam" placeholder="I'm looking for...." onchange="Search">
-                    <span>
-                        <i class="ri-search-line"></i>
-                    </span>
-                </div>  
+    <div class="search__widget d-flex align-items-center justify-content-between">
+        <input type="text" class="w-100" value="@Model.SearchParam"
+        placeholder="I'm looking for...." id="searchParam">
+        <span onclick="searchFood(@Model.ActiveCategory)">
+            <i class="ri-search-line"></i>
+        </span>
+    </div>  
 </div>
-@if ("" != null)
+
+@if (Model.FoodList != null)
 {
     @foreach (var item in Model.FoodList)
     {
@@ -45,10 +47,7 @@
             </div>
         </div>
     }
-    @if (0 == 0)
-    {
-        <div class="text-center">
-            <MudPagination SelectedChanged="PageChanged" ShowFirstButton="true" ShowLastButton="true" Count="_foodPagination.TotalPageNo" Class="mt-4"/>
-        </div>
-    }
+   <div class="text-center">
+       <MudPagination SelectedChanged="PageChanged" ShowFirstButton="true" ShowLastButton="true" Count="@Model.TotalPageNo" Class="mt-4"/>
+   </div>
 }

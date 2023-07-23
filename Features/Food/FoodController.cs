@@ -11,12 +11,30 @@ namespace FoodDeliveryApp.Features.Food
             _foodService = foodService;
         }
 
-        public ActionResult Index()
+        public IActionResult Index()
         {
-            ViewBag.FoodPagination = _foodService.FoodList(new FoodPaginationRequestModel());
-            ViewBag.FoodCategoryList = _foodService.FoodCategoryList;
+            var FoodPagination = _foodService.FoodPagination(new FoodPaginationRequestModel());
+            var FoodCategoryList = _foodService.FoodCategoryList;
+            var ActiveCategory = 0;
+            ViewBag.FoodSectionModel = new FoodSectionModel
+            {
+                ActiveCategory = 0,
+                FoodCategoryList = FoodCategoryList,
+                FoodPagination = FoodPagination
+            };
             return View();
         }
-       
+
+        public IActionResult FoodSection(FoodPaginationRequestModel request)
+        {
+            var foodPagination = _foodService.FoodPagination(request);
+            var response = new FoodSectionModel
+            {
+                ActiveCategory = request.FoodCategoryId,
+                FoodPagination = foodPagination,
+                FoodCategoryList = _foodService.FoodCategoryList
+            };
+            return View(response);
+        }
     }
 }

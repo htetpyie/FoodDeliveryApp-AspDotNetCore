@@ -6,14 +6,30 @@
 @await Html.PartialAsync("HeroSection")
 @await Html.PartialAsync("FoodTypeCards")
 @await Html.PartialAsync("ServiceSection")
-@await Html.PartialAsync("~/Views/Food/PopularFood.cshtml")
+<section id="Foods">
+    @{
+        FoodSectionModel model = ViewBag.FoodSectionModel;
+    }
+    @await Html.PartialAsync("~/Views/Food/FoodSection.cshtml", model)
+</section>
 @await Html.PartialAsync("DelivarySection")
 
 @section Scripts{
     <script>
        
-        function getPagination(categoryId){
-            alert("nice",categoryId);
+        function searchFood(categoryId){
+            let searchParam = $('#searchParam').val();
+            getPagination(categoryId, 1, searchParam);
+        }
+
+        function getPagination(categoryId = 0, pageNo = 1, searchParam = ""){
+            let request = {
+                "FoodCategoryId" : categoryId,
+                "PageNo": pageNo,
+                "SearchParam" : searchParam
+            }
+            url = `/Food/FoodSection?FoodCategoryId=${categoryId}&pageNo=${pageNo}&searchParam=${searchParam}` 
+            $('#Foods').load(url)
         }
     </script>
 }

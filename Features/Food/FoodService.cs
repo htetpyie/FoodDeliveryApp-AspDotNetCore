@@ -7,7 +7,7 @@ namespace FoodDeliveryApp.Features.Food
         public List<FoodCategoryModel> FoodCategoryList =>
             Get<FoodCategoryModel>(JsonData.FoodCategory) ?? new();
 
-        public FoodPaginationResponseModel FoodList(
+        public FoodPaginationResponseModel FoodPagination(
            FoodPaginationRequestModel request)
         {
             List<FoodModel> foodList = Get<FoodModel>(JsonData.Food) ?? new();
@@ -55,7 +55,8 @@ namespace FoodDeliveryApp.Features.Food
             {
                 FoodList = list,
                 TotalPageNo = totalPages,
-                SearchParam = request.SearchParam
+                SearchParam = request.SearchParam,
+                PageNo = request.PageNo,
             };
         }
     }
