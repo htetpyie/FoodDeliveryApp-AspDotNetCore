@@ -31,5 +31,20 @@
             url = `/Food/FoodSection?FoodCategoryId=${categoryId}&pageNo=${pageNo}&searchParam=${searchParam}` 
             $('#Foods').load(url)
         }
+
+        function addToCard(foodId, qty){
+             $.ajax({
+                url: "/Food/AddToCard",
+                type: "POST",
+                dataType: "json",
+                data: { foodId: foodId, qty: qty },
+                success: function (count) {
+                    $('#card_count').text(count)
+                },
+                error: function (err) {
+                    console.error(err);
+                }
+            });
+        }
     </script>
 }

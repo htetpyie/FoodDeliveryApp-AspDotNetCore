@@ -37,14 +37,23 @@ namespace FoodDeliveryApp.Features.Food
             return View(response);
         }
 
-        public IActionResult AddedFood(int foodId)
+        [HttpPost]
+        public IActionResult AddToCard(int foodId, int qty)
         {
+
             var food = _foodService.GetFoodById(foodId);
             FoodSaleDataModel model = food.Change();
-            _foodService.AddedFoodToCard(model);
+
+            _foodService.AddedFoodToCard(model, qty);
 
             var foodList = _foodService.GetAddedFoodList();
-            return Json(foodList.Count);
+            return Json(foodList.Sum(x => x.Qty));
+        }
+
+        public IActionResult Card()
+        {
+            var cardList = _foodService.GetAddedFoodList();
+            return View(cardList);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using FoodDeliveryApp.DbService;
+using LiteDB;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -35,23 +36,31 @@ namespace FoodDeliveryApp.Features.Food
             if (FoodExists(food.FoodId))
             {
                 var foodData = GetFood(food.FoodId);
-                foodData.Qty += qty;
-                _db.Update(food);
+                int quantity = foodData.Qty + qty;
+                foodData.Qty = quantity;
+
+                if (quantity == 0)
+                    _db.Delete<FoodSaleDataModel>(food.FoodId);
+
+                else _db.Update(foodData);          
             }
             else
             {
+                food.Qty = qty;
                 _db.Insert<FoodSaleDataModel>(food);
             }
         }
 
         public FoodSaleDataModel GetFood(int id)
         {
-            return _db.GetOne<FoodSaleDataModel>(x => x.FoodId == id);
+            return _db.GetOne<FoodSaleDataModel>
+                (x => x.FoodId == id);
         }
 
         public bool FoodExists(int id)
         {
-            var food = _db.GetOne<FoodSaleDataModel>(x => x.FoodId == id);
+            var food = _db.GetOne<FoodSaleDataModel>
+                (x => x.FoodId == id);
             return food != null;
         }
 
