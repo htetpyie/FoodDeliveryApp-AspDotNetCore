@@ -1,18 +1,18 @@
-﻿@{
+﻿@model FoodPaginationResponseModel
+@{
     Layout = null;
 }
-
  <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-3">
                 <div class="search__widget d-flex align-items-center justify-content-between ">
-                    <input type="text" placeholder="I'm looking for...." onchange="Search">
+                    <input type="text" value="@Model.SearchParam" placeholder="I'm looking for...." onchange="Search">
                     <span>
                         <i class="ri-search-line"></i>
                     </span>
-                </div>
+                </div>  
 </div>
 @if ("" != null)
 {
-    @foreach (var item in ViewBag.FoodList)
+    @foreach (var item in Model.FoodList)
     {
         string name = item.FoodName;
         string img = $"assets/img/food/{item.FoodId}.jpg";
@@ -20,7 +20,7 @@
         string display = (string.IsNullOrEmpty(name.Trim()) ||
                             name.ToLower().Contains(""?.ToLower() ?? string.Empty)) ? "" : "display : none;";
 
-        <div class="mt-5 col-6 col-sm-6 col-md-4 col-lg-3" style="display">
+        <div class="mt-5 col-6 col-sm-6 col-md-4 col-lg-3" style="display:block">
             <div class="product__item">
                 <div class="product__img">
                     <img src="@img"

@@ -4,6 +4,7 @@
     {
         public List<FoodModel> FoodList { get; set; } = new List<FoodModel>();
         public int TotalPageNo { get; set; }
+        public string SearchParam { get; set; } 
     }
 
     public class FoodPaginationRequestModel

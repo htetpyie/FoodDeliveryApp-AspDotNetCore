@@ -13,17 +13,10 @@ namespace FoodDeliveryApp.Features.Food
 
         public ActionResult Index()
         {
-            ViewBag.FoodList = _foodService.FoodList;
+            ViewBag.FoodPagination = _foodService.FoodList(new FoodPaginationRequestModel());
             ViewBag.FoodCategoryList = _foodService.FoodCategoryList;
             return View();
         }
-
-        public IActionResult PopularFood()
-        {
-            ViewBag.FoodList = _foodService.FoodList;
-            ViewBag.FoodCategoryList = _foodService.FoodCategoryList;
-            return View();
-        }
-
+       
     }
 }

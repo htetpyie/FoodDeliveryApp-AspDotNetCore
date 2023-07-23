@@ -8,3 +8,12 @@
 @await Html.PartialAsync("ServiceSection")
 @await Html.PartialAsync("~/Views/Food/PopularFood.cshtml")
 @await Html.PartialAsync("DelivarySection")
+
+@section Scripts{
+    <script>
+       
+        function getPagination(categoryId){
+            alert("nice",categoryId);
+        }
+    </script>
+}

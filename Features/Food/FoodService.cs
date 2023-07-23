@@ -54,7 +54,8 @@ namespace FoodDeliveryApp.Features.Food
             return new FoodPaginationResponseModel
             {
                 FoodList = list,
-                TotalPageNo = totalPages
+                TotalPageNo = totalPages,
+                SearchParam = request.SearchParam
             };
         }
     }

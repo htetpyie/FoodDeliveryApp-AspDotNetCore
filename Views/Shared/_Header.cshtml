@@ -15,7 +15,7 @@
                         {
                             <a 
                                 @*class="@(page == _menuStateContainer.PageType ? "active__menu" : "")"*@
-                               href="javascript:void(0);"
+                               href="#@(page.ToString())"
                                @*@onclick="() => GoToPage(page)"*@
                                aria-current="page">
                                 @(page.ToString())
@@ -24,10 +24,13 @@
                     </div>
                 </div>
                 <div class="nav__right d-flex align-items-center gap-4">
-                    <PageNotification/>
+                    <span class="cart__icon">
+                        <i class="ri-shopping-basket-line" onclick="OpenCart"></i>
+                        <span class="cart__badge">0</span>
+                    </span>
                     <span
                         class="user">
-                        <a href="https://food-delivery-ecommerce-app.netlify.app/login">
+                        <a href="#">
                             <i
                                 class="ri-user-line">
                             </i>
