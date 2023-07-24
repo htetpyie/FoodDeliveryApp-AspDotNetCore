@@ -41,6 +41,7 @@
                 data: { foodId: foodId, qty: qty },
                 success: function (count) {
                     $('#card_count').text(count)
+                    return count;
                 },
                 error: function (err) {
                     console.error(err);

@@ -29,12 +29,37 @@ $('#cart_icon').on('click',function(){
 })
 
 function addItem(foodId){
-    addToCard(foodId, 1)
-    loadCardSection();
+    $.ajax({
+        url: "/Food/AddToCart",
+        type: "POST",
+        dataType: "json",
+        data: { foodId: foodId, qty: 1 },
+        success: function (count) {
+            $('#card_count').text(count)
+            loadCardSection();
+        },
+        error: function (err) {
+            console.error(err);
+        }
+    });
+    
 }
 
 function removeItem(foodId){
-    addToCard(foodId, -1)
+    $.ajax({
+        url: "/Food/AddToCart",
+        type: "POST",
+        dataType: "json",
+        data: { foodId: foodId, qty: -1 },
+        success: function (count) {
+            $('#card_count').text(count)
+            loadCardSection();
+        },
+        error: function (err) {
+            console.error(err);
+        }
+    });
+    console.log(count);
     loadCardSection();
 }
 
