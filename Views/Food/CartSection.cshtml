@@ -45,9 +45,15 @@
         </div>
         <div class="cart__bottom d-flex align-items-center justify-content-between">
             <h6>TotalAmount : <span>$@(Model.Sum((x => x.FoodPrice * x.Qty)))</span></h6>
-            <button class="btn" onclick = "location.href = '/Food/Checkout' ">
-                    Checkout
-            </button>
+        @if(Model.Count > 0)
+        {
+            <button class="btn" onclick="location.href='/food/checkout'">Checkout</button>
+        }
+        else
+        {
+            <button class="btn" disabled>Checkout</button>
+        }
+
         </div>
        </ul>
 </div>

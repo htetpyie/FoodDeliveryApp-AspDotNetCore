@@ -39,7 +39,7 @@ namespace FoodDeliveryApp.Features.Food
                 int quantity = foodData.Qty + qty;
                 foodData.Qty = quantity;
 
-                if (quantity == 0)
+                if (quantity <= 0)
                     _db.Delete<FoodSaleDataModel>(food.FoodId);
 
                 else _db.Update(foodData);          

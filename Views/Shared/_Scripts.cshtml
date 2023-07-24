@@ -45,7 +45,7 @@ function deleteItem(foodId){
         dataType: "json",
         data:{foodId, foodId},
         success: function (result) {  
-            console.log(result);
+            if(result == true)
              loadCardSection();
         },
         error: function (err) {
