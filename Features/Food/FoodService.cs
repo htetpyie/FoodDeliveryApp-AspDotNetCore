@@ -70,7 +70,7 @@ namespace FoodDeliveryApp.Features.Food
             return list;
         }
 
-        public bool DeleteAddedFood(Guid id)
+        public bool DeleteAddedFood(int id)
         {
             var isDeleted = _db.Delete<FoodSaleDataModel>(id);
             return isDeleted;

@@ -63,11 +63,24 @@ namespace FoodDeliveryApp.Features.Food
             return Json(count);
         }
 
-        public IActionResult CheckOut()
+        public IActionResult Checkout()
         {
             var foodList = _foodService.GetAddedFoodList();
             _foodService.DeleteAddedFoods();
             return View(foodList);
+        }
+
+        public IActionResult CartSection()
+        {
+            var foodList = _foodService.GetAddedFoodList();
+            return View(foodList);
+        }
+
+        [HttpPost]
+        public IActionResult DeleteFood(int foodId) 
+        {
+            bool isSuccess = _foodService.DeleteAddedFood(foodId);
+            return Json(isSuccess);
         }
 
         private int GetCartItems()

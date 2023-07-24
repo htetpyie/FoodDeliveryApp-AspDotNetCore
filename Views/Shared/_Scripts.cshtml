@@ -20,4 +20,42 @@ function setCardCount(){
         }
     });
 }
+   
+$('#cart_icon').on('click',function(){
+    if($('#card_count').text() != "0"){
+        loadCardSection();
+        $('#cart_section').css("display","block");
+    }
+})
+
+function addItem(foodId){
+    addToCard(foodId, 1)
+    loadCardSection();
+}
+
+function removeItem(foodId){
+    addToCard(foodId, -1)
+    loadCardSection();
+}
+
+function deleteItem(foodId){
+    $.ajax({
+        url: "/Food/DeleteFood",
+        type: "POST",
+        dataType: "json",
+        data:{foodId, foodId},
+        success: function (result) {  
+            console.log(result);
+             loadCardSection();
+        },
+        error: function (err) {
+            console.error(err);
+        }
+    });
+}
+
+function loadCardSection(){
+    $('#cart_section').load("/food/cartSection");
+}
+
 </script>

@@ -9,7 +9,7 @@ namespace FoodDeliveryApp.Features
             if(model == null) { return new(); }
             return new FoodSaleDataModel
             {
-                SaleId = Guid.NewGuid(),
+                SaleId = new Guid(),
                 FoodId = model.FoodId,
                 FoodName = model.FoodName,
                 FoodPhoto = model.FoodPhoto,
