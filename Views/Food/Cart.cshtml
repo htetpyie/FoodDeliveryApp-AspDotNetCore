@@ -35,7 +35,7 @@
                             <td class="text-center">@item.Qty</td>
                             <td class="text-center cart__item-del">
                                 <i onclick="deleteItemFromCard(@item.FoodId)"
-                                    class="ri-delete-bin-line">
+                                   class="ri-delete-bin-line">
                                 </i>
                             </td>
                         </tr>
@@ -46,7 +46,7 @@
                     <h6>Subtotal: $<span class="cart__subtotal">@(Model.Sum((x => x.FoodPrice * x.Qty)))</span></h6>
                     @* <p>Taxes and shipping will calculate at checkout</p> *@
                     <div class="cart__page-btn">
-                        <a class="addTOCart__btn btn me-4" href="/Food/Index#Foods" >
+                        <a class="addTOCart__btn btn me-4" href="/Food/Index#Foods">
                             Continue Shopping
                             @* <NavLink *@
                             @*     href=""> *@

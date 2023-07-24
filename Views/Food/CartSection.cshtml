@@ -2,50 +2,50 @@
 @{
     Layout = null;
 }
-    <ul class="cart list-group">
-        <div class="cart__close">
-            <span>
-                <i class="ri-close-fill" id="close_cart_icon" onclick="document.querySelector('#cart_section').style.display='none'"></i>
-            </span>
-        </div>
-        <div class="cart__item-list">
-           
-            @foreach (var item in Model)
-            {
-                string img = $"assets/img/food/{item.FoodId}.jpg";
-                <li class="border-0 cart__item list-group-item">
-                    <div class="cart__item-info d-flex gap-2">
-                        <img src="@img" alt="product-img">
-                        <div class="cart__product-info w-100 d-flex align-items-center gap-4 justify-content-between">
-                            <div>
-                                <h6 class="cart__product-title">@item.FoodName</h6>
-                                <p class=" d-flex align-items-center gap-5 cart__product-price">
-                                    <span>@(item.FoodPrice)$</span>
-                                </p>
-                                <div class=" d-flex align-items-center justify-content-between increase__decrease-btn">
-                                    <a class="decrease__btn" href="javascript:void(0);" onclick="removeItem(@item.FoodId)">
-                                        <i class="ri-subtract-line"></i>
-                                    </a>
-                                    <span class=" quantity">
-                                        @item.Qty
-                                    </span>
-                                    <span class="increase__btn">
-                                        <i class="ri-add-line" onclick="addItem(@item.FoodId)"></i>
-                                    </span>
-                                </div>
+<ul class="cart list-group">
+    <div class="cart__close">
+        <span>
+            <i class="ri-close-fill" id="close_cart_icon" onclick="document.querySelector('#cart_section').style.display='none'"></i>
+        </span>
+    </div>
+    <div class="cart__item-list">
+
+        @foreach (var item in Model)
+        {
+            string img = $"assets/img/food/{item.FoodId}.jpg";
+            <li class="border-0 cart__item list-group-item">
+                <div class="cart__item-info d-flex gap-2">
+                    <img src="@img" alt="product-img">
+                    <div class="cart__product-info w-100 d-flex align-items-center gap-4 justify-content-between">
+                        <div>
+                            <h6 class="cart__product-title">@item.FoodName</h6>
+                            <p class=" d-flex align-items-center gap-5 cart__product-price">
+                                <span>@(item.FoodPrice)$</span>
+                            </p>
+                            <div class=" d-flex align-items-center justify-content-between increase__decrease-btn">
+                                <a class="decrease__btn" href="javascript:void(0);" onclick="removeItem(@item.FoodId)">
+                                    <i class="ri-subtract-line"></i>
+                                </a>
+                                <span class=" quantity">
+                                    @item.Qty
+                                </span>
+                                <span class="increase__btn">
+                                    <i class="ri-add-line" onclick="addItem(@item.FoodId)"></i>
+                                </span>
                             </div>
-                            <button class="delete__btn" type="button" onclick="deleteItem(@item.FoodId)">
-                                <i class="ri-delete-bin-line"></i>
-                            </button>
                         </div>
+                        <button class="delete__btn" type="button" onclick="deleteItem(@item.FoodId)">
+                            <i class="ri-delete-bin-line"></i>
+                        </button>
                     </div>
-                </li>
-            }
-           
-        </div>
-        <div class="cart__bottom d-flex align-items-center justify-content-between">
-            <h6>TotalAmount : <span>$@(Model.Sum((x => x.FoodPrice * x.Qty)))</span></h6>
-        @if(Model.Count > 0)
+                </div>
+            </li>
+        }
+
+    </div>
+    <div class="cart__bottom d-flex align-items-center justify-content-between">
+        <h6>TotalAmount : <span>$@(Model.Sum((x => x.FoodPrice * x.Qty)))</span></h6>
+        @if (Model.Count > 0)
         {
             <button class="btn" onclick="location.href='/food/checkout'">Checkout</button>
         }
@@ -54,6 +54,5 @@
             <button class="btn" disabled>Checkout</button>
         }
 
-        </div>
-       </ul>
-</div>
+    </div>
+</ul>

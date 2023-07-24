@@ -9,18 +9,18 @@
                 <div class="navigation">
                     <div class="menu d-flex align-items-center gap-5">
                         @{
-                          List<EnumPageType> pageTypes = Enum.GetValues(typeof(EnumPageType)).Cast<EnumPageType>().ToList();
+                            List<EnumPageType> pageTypes = Enum.GetValues(typeof(EnumPageType)).Cast<EnumPageType>().ToList();
                         }
                         @foreach (var page in pageTypes)
                         {
                             string link = $"Food/Index#{page.ToString()}";
                             if (page.ToString() == "Cart") link = "/Food/Cart";
 
-                            <a 
+                            <a
                                 @*class="@(page == _menuStateContainer.PageType ? "active__menu" : "")"*@
-                               href="@link"
-                               @*@onclick="() => GoToPage(page)"*@
-                               aria-current="page">
+                                href="@link"
+                                @*@onclick="() => GoToPage(page)"*@
+                                aria-current="page">
                                 @(page.ToString())
                             </a>
                         }
@@ -51,5 +51,5 @@
 </div>
 
 <div class="cart__container" id="cart_section" style="display:none">
-    
- </div>
+
+</div>

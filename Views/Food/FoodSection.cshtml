@@ -3,29 +3,30 @@
     Layout = null;
 }
 
-    <div class="container">
-        <div class="row">
-            <div class="text-center col-lg-12">
-                <h2>Popular Foods</h2>
-            </div>
-            <div class="col-lg-12">
-                <div class="food__category d-flex align-items-center justify-content-center gap-4">
-                    <button type="button" class="all__btn gap-2  @(Model.ActiveCategory == 0 ? "foodBtnActive" : "") "
-                    onclick="getPagination()">All</button>
-                    @foreach (var item in Model.FoodCategoryList)
-                    {
-                        string imagePath = $"assets/img/food-category/{item.CategoryId}.png";
-                        <button type="button" class="d-flex align-items-center gap-2 @(Model.ActiveCategory == item.CategoryId ? "foodBtnActive" : "") " 
-                        onclick="getPagination(@item.CategoryId)">
-                            <img src="@(imagePath)"
-                                 alt="">@item.CategoryName
-                        </button>
-                    }
-                </div>
-            </div>   
-
-            @await Html.PartialAsync("FoodPagination", Model.FoodPagination)
-            
+<div class="container">
+    <div class="row">
+        <div class="text-center col-lg-12">
+            <h2>Popular Foods</h2>
         </div>
+        <div class="col-lg-12">
+            <div class="food__category d-flex align-items-center justify-content-center gap-4">
+                <button type="button" class="all__btn gap-2  @(Model.ActiveCategory == 0 ? "foodBtnActive" : "") "
+                        onclick="getPagination()">
+                    All
+                </button>
+                @foreach (var item in Model.FoodCategoryList)
+                {
+                    string imagePath = $"assets/img/food-category/{item.CategoryId}.png";
+                    <button type="button" class="d-flex align-items-center gap-2 @(Model.ActiveCategory == item.CategoryId ? "foodBtnActive" : "") "
+                            onclick="getPagination(@item.CategoryId)">
+                        <img src="@(imagePath)"
+                             alt="">@item.CategoryName
+                    </button>
+                }
+            </div>
+        </div>
+
+        @await Html.PartialAsync("FoodPagination", Model.FoodPagination)
+
     </div>
- 
+</div>

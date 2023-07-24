@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 builder.Services.Configure<LiteDbOption>(
-builder.Configuration.GetSection("LiteDbOptions"));
+    builder.Configuration.GetSection("LiteDbOptions"));
 builder.Services.AddScoped<FoodService>();
 builder.Services.AddScoped<CardService>();
 builder.Services.AddSingleton<LiteDbService>();

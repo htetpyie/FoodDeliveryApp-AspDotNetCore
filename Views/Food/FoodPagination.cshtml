@@ -3,14 +3,14 @@
     Layout = null;
 }
 
- <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-3">
+<div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-3">
     <div class="search__widget d-flex align-items-center justify-content-between">
         <input type="text" class="w-100" value="@Model.SearchParam"
-        placeholder="I'm looking for...." id="searchParam">
+               placeholder="I'm looking for...." id="searchParam">
         <span onclick="searchFood(@Model.ActiveCategory)">
             <i class="ri-search-line"></i>
         </span>
-    </div>  
+    </div>
 </div>
 
 @if (Model.FoodList != null)
@@ -21,13 +21,13 @@
         string img = $"assets/img/food/{item.FoodId}.jpg";
         decimal price = item.FoodPrice;
         string display = (string.IsNullOrEmpty(name.Trim()) ||
-                            name.ToLower().Contains(""?.ToLower() ?? string.Empty)) ? "" : "display : none;";
+                          name.ToLower().Contains(""?.ToLower() ?? string.Empty)) ? "" : "display : none;";
 
         <div class="mt-5 col-6 col-sm-6 col-md-4 col-lg-3" style="display:block">
             <div class="product__item">
                 <div class="product__img">
                     <img src="@img"
-                            alt="product-img" class="w-50">
+                         alt="product-img" class="w-50">
                 </div>
                 <div class="product__content">
                     <h5 style="height:47px;">
@@ -48,31 +48,30 @@
             </div>
         </div>
     }
-    
-    <link rel="stylesheet" href="~/css/pagination.css" />
-    
+
+    <link rel="stylesheet" href="~/css/pagination.css"/>
+
     <center>
         <div class="pagination p1">
-          <ul>
-            <button @(Model.PageNo == 1 ? "disabled" : "")
-                onclick="getPagination(@Model.ActiveCategory,@(Model.PageNo - 1))">
-                <li> @("<") </li>
-            </button>
+            <ul>
+                <button @(Model.PageNo == 1 ? "disabled" : "")
+                    onclick="getPagination(@Model.ActiveCategory,@(Model.PageNo - 1))">
+                    <li> @("<") </li>
+                </button>
 
-                @for(int i = 1; i <= Model.TotalPageNo; i++)
+                @for (int i = 1; i <= Model.TotalPageNo; i++)
                 {
                     <button class="@(i == Model.PageNo ? "is-active" : "")"
-                        onclick="getPagination(@Model.ActiveCategory,@i)">
-                            <li>@i</li>
+                            onclick="getPagination(@Model.ActiveCategory,@i)">
+                        <li>@i</li>
                     </button>
                 }
-        
-            <button @(Model.PageNo == Model.TotalPageNo ? "disabled" : "")
-                onclick="getPagination(@Model.ActiveCategory,@(Model.PageNo + 1))">
-                <li>@(">")</li>
-            </button>
-          </ul>
-   </div>
+
+                <button @(Model.PageNo == Model.TotalPageNo ? "disabled" : "")
+                    onclick="getPagination(@Model.ActiveCategory,@(Model.PageNo + 1))">
+                    <li>@(">")</li>
+                </button>
+            </ul>
+        </div>
     </center>
-    
 }
