@@ -2,6 +2,7 @@
 @{
     Layout = null;
 }
+
  <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-3">
     <div class="search__widget d-flex align-items-center justify-content-between">
         <input type="text" class="w-100" value="@Model.SearchParam"
@@ -47,7 +48,31 @@
             </div>
         </div>
     }
-   <div class="text-center">
-       <MudPagination SelectedChanged="PageChanged" ShowFirstButton="true" ShowLastButton="true" Count="@Model.TotalPageNo" Class="mt-4"/>
+    
+    <link rel="stylesheet" href="~/css/pagination.css" />
+    
+    <center>
+        <div class="pagination p1">
+          <ul>
+            <button @(Model.PageNo == 1 ? "disabled" : "")
+                onclick="getPagination(@Model.ActiveCategory,@(Model.PageNo - 1))">
+                <li> @("<") </li>
+            </button>
+
+                @for(int i = 1; i <= Model.TotalPageNo; i++)
+                {
+                    <button class="@(i == Model.PageNo ? "is-active" : "")"
+                        onclick="getPagination(@Model.ActiveCategory,@i)">
+                            <li>@i</li>
+                    </button>
+                }
+        
+            <button @(Model.PageNo == Model.TotalPageNo ? "disabled" : "")
+                onclick="getPagination(@Model.ActiveCategory,@(Model.PageNo + 1))">
+                <li>@(">")</li>
+            </button>
+          </ul>
    </div>
+    </center>
+    
 }

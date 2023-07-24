@@ -1,0 +1,113 @@
+﻿
+a {
+    text-decoration: none;
+}
+
+/* GRID */
+
+.twelve {
+    width: 100%;
+}
+
+.eleven {
+    width: 91.53%;
+}
+
+.ten {
+    width: 83.06%;
+}
+
+.nine {
+    width: 74.6%;
+}
+
+.eight {
+    width: 66.13%;
+}
+
+.seven {
+    width: 57.66%;
+}
+
+.six {
+    width: 49.2%;
+}
+
+.five {
+    width: 40.73%;
+}
+
+.four {
+    width: 32.26%;
+}
+
+.three {
+    width: 23.8%;
+}
+
+.two {
+    width: 15.33%;
+}
+
+.one {
+    width: 6.866%;
+}
+
+/* COLUMNS */
+
+
+    .col:first-of-type {
+        margin-left: 0;
+    }
+
+
+/* CLEARFIX */
+
+.cf:before,
+.cf:after {
+    content: " ";
+    display: table;
+}
+
+.cf:after {
+    clear: both;
+}
+
+.cf {
+    *zoom: 1;
+}
+
+/* GENERAL STYLES */
+
+.pagination {
+    padding: 30px 0;
+    display: block !important;
+}
+
+.pagination button {
+   border: none;
+   border-radius: 50%;
+   width: 35px;
+   height: 35px;
+   line-height: 35px;
+   padding: 0;
+   margin:0 5px;
+   text-align: center;
+}
+
+    .pagination ul {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+    }
+
+        .pagination ul li {
+            font-size: 12px;
+            line-height: 30px;
+        }
+
+/* ONE */
+.p1 button.is-active {
+    background: #DF2020 !important;
+    color: #fff !important;
+}
