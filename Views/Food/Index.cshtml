@@ -17,6 +17,7 @@
 @section Scripts{
     <script>
        
+       
         function searchFood(categoryId){
             let searchParam = $('#searchParam').val();
             getPagination(categoryId, 1, searchParam);
@@ -34,7 +35,7 @@
 
         function addToCard(foodId, qty){
              $.ajax({
-                url: "/Food/AddToCard",
+                url: "/Food/AddToCart",
                 type: "POST",
                 dataType: "json",
                 data: { foodId: foodId, qty: qty },

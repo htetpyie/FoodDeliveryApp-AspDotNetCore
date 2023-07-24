@@ -46,23 +46,23 @@
                     <h6>Subtotal: $<span class="cart__subtotal">@(Model.Sum((x => x.FoodPrice * x.Qty)))</span></h6>
                     @* <p>Taxes and shipping will calculate at checkout</p> *@
                     <div class="cart__page-btn">
-                        <button class="addTOCart__btn me-4" onclick="GoToPage">
+                        <a class="addTOCart__btn btn me-4" href="/Food/Index#Foods" >
                             Continue Shopping
                             @* <NavLink *@
                             @*     href=""> *@
                             @*     Continue *@
                             @*     Shopping *@
                             @* </NavLink> *@
-                        </button>
+                        </a>
                         @if (Model.Count > 0)
                         {
-                            <button class="addTOCart__btn">
+                            <a href="/Food/Checkout" class="btn addTOCart__btn">
                                 <NavLink
                                     href="checkout">
                                     Proceed
                                     to checkout
                                 </NavLink>
-                            </button>
+                            </a>
                         }
                     </div>
                 </div>

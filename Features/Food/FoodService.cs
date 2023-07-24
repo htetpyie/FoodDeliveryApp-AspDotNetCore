@@ -31,7 +31,7 @@ namespace FoodDeliveryApp.Features.Food
             return response;
         }
 
-        public void AddedFoodToCard(FoodSaleDataModel food, int qty)
+        public void AddedFoodToCart(FoodSaleDataModel food, int qty)
         {
             if (FoodExists(food.FoodId))
             {

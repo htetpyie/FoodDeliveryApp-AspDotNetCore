@@ -13,9 +13,12 @@
                         }
                         @foreach (var page in pageTypes)
                         {
+                            string link = $"Food/Index#{page.ToString()}";
+                            if (page.ToString() == "Cart") link = "/Food/Cart";
+
                             <a 
                                 @*class="@(page == _menuStateContainer.PageType ? "active__menu" : "")"*@
-                               href="#@(page.ToString())"
+                               href="@link"
                                @*@onclick="() => GoToPage(page)"*@
                                aria-current="page">
                                 @(page.ToString())

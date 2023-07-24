@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Net.NetworkInformation;
 
 namespace FoodDeliveryApp.Features.Food
 {
@@ -38,22 +39,42 @@ namespace FoodDeliveryApp.Features.Food
         }
 
         [HttpPost]
-        public IActionResult AddToCard(int foodId, int qty)
+        public IActionResult AddToCart(int foodId, int qty)
         {
-
             var food = _foodService.GetFoodById(foodId);
             FoodSaleDataModel model = food.Change();
 
-            _foodService.AddedFoodToCard(model, qty);
+            _foodService.AddedFoodToCart(model, qty);
+            int count = GetCartItems();
 
-            var foodList = _foodService.GetAddedFoodList();
-            return Json(foodList.Sum(x => x.Qty));
+            return Json(count);
         }
 
-        public IActionResult Card()
+        public IActionResult Cart()
         {
             var cardList = _foodService.GetAddedFoodList();
             return View(cardList);
+        }
+
+        [HttpPost]
+        public IActionResult GetFoodCount()
+        {
+            int count = GetCartItems();
+            return Json(count);
+        }
+
+        public IActionResult CheckOut()
+        {
+            var foodList = _foodService.GetAddedFoodList();
+            _foodService.DeleteAddedFoods();
+            return View(foodList);
+        }
+
+        private int GetCartItems()
+        {
+            var foodList = _foodService.GetAddedFoodList();
+            int count = foodList.Sum(x => x.Qty);
+            return count;
         }
     }
 }
