@@ -79,6 +79,23 @@ function deleteItem(foodId){
     });
 }
 
+function deleteItemFromCard(foodId){
+    $.ajax({
+        url: "/Food/DeleteFood",
+        type: "POST",
+        dataType: "json",
+        data:{foodId, foodId},
+        success: function (result) {  
+            console.log(result)
+            if(result == true)
+             location.href = '/food/cart'
+        },
+        error: function (err) {
+            console.error(err);
+        }
+    });
+}
+
 function loadCardSection(){
     $('#cart_section').load("/food/cartSection");
 }
