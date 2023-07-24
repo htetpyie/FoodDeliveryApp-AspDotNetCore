@@ -24,7 +24,7 @@ namespace FoodDeliveryApp.Features.Food
         }
 
         public FoodPaginationResponseModel FoodPagination(
-           FoodPaginationRequestModel request)
+            FoodPaginationRequestModel request)
         {
             List<FoodModel> foodList = Get<FoodModel>(JsonData.Food) ?? new();
             var response = GetPaginationResponse(foodList, request);
@@ -42,7 +42,7 @@ namespace FoodDeliveryApp.Features.Food
                 if (quantity <= 0)
                     _db.Delete<FoodSaleDataModel>(food.FoodId);
 
-                else _db.Update(foodData);          
+                else _db.Update(foodData);
             }
             else
             {
@@ -104,7 +104,7 @@ namespace FoodDeliveryApp.Features.Food
                 list = list
                     .Where(x =>
                         x.FoodName.ToLower()
-                        .Contains(searchParam))
+                            .Contains(searchParam))
                     .ToList();
             }
 
@@ -126,6 +126,4 @@ namespace FoodDeliveryApp.Features.Food
             };
         }
     }
-
-
 }

@@ -14,7 +14,8 @@ namespace FoodDeliveryApp.Features.Food
 
         public IActionResult Index()
         {
-            var FoodPagination = _foodService.FoodPagination(new FoodPaginationRequestModel());
+            var FoodPagination = _foodService
+                .FoodPagination(new FoodPaginationRequestModel());
             var FoodCategoryList = _foodService.FoodCategoryList;
             var ActiveCategory = 0;
             ViewBag.FoodSectionModel = new FoodSectionModel
@@ -28,7 +29,8 @@ namespace FoodDeliveryApp.Features.Food
 
         public IActionResult FoodSection(FoodPaginationRequestModel request)
         {
-            var foodPagination = _foodService.FoodPagination(request);
+            var foodPagination = _foodService
+                .FoodPagination(request);
             var response = new FoodSectionModel
             {
                 ActiveCategory = request.FoodCategoryId,
@@ -77,7 +79,7 @@ namespace FoodDeliveryApp.Features.Food
         }
 
         [HttpPost]
-        public IActionResult DeleteFood(int foodId) 
+        public IActionResult DeleteFood(int foodId)
         {
             bool isSuccess = _foodService.DeleteAddedFood(foodId);
             return Json(isSuccess);

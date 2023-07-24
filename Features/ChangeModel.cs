@@ -6,7 +6,11 @@ namespace FoodDeliveryApp.Features
     {
         public static FoodSaleDataModel Change(this FoodModel model)
         {
-            if(model == null) { return new(); }
+            if (model == null)
+            {
+                return new();
+            }
+
             return new FoodSaleDataModel
             {
                 SaleId = new Guid(),

@@ -6,6 +6,5 @@
         {
             return value == null || string.IsNullOrEmpty(value);
         }
-                
     }
 }

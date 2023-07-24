@@ -15,6 +15,10 @@
         public int PageNo { get; set; } = 1;
         public int PageSize { get; set; } = 8;
         public string SearchParam { get; set; } = "";
-        public int Skip { get => (PageNo - 1) * PageSize; }
+
+        public int Skip
+        {
+            get => (PageNo - 1) * PageSize;
+        }
     }
 }
