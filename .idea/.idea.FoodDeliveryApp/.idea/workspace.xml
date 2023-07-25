@@ -5,21 +5,11 @@
     <projectFile profileName="http">FoodDeliveryApp.csproj</projectFile>
     <projectFile profileName="https">FoodDeliveryApp.csproj</projectFile>
   </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="cbcb147d-f909-41fc-b97e-2009fb82d984" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Features/ChangeModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Features/ChangeModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Features/DevCode/Extensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Features/DevCode/Extensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Features/Enum/EnumCartType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Features/Enum/EnumCartType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Features/Enum/EnumPageType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Features/Enum/EnumPageType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Features/Food/FoodCategoryModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Features/Food/FoodCategoryModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Features/Food/FoodController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Features/Food/FoodController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Features/Food/FoodModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Features/Food/FoodModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Features/Food/FoodPaginationResponseModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Features/Food/FoodPaginationResponseModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Features/Food/FoodSaleDataModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Features/Food/FoodSaleDataModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Features/Food/FoodSectionModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Features/Food/FoodSectionModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Features/Food/FoodService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Features/Food/FoodService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Features/Food/JsonData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Features/Food/JsonData.cs" afterDir="false" />
-    </list>
+    <list default="true" id="cbcb147d-f909-41fc-b97e-2009fb82d984" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,6 +18,7 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectId" id="2T1n4DPz0LQuQ38G2UiaYQgCK89" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -106,14 +97,25 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1690219343082</updated>
-      <workItem from="1690219348398" duration="563000" />
+      <workItem from="1690219348398" duration="622000" />
     </task>
+    <task id="LOCAL-00001" summary="code format">
+      <created>1690219949196</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1690219949196</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="code format" />
+    <option name="LAST_COMMIT_MESSAGE" value="code format" />
   </component>
 </project>
